@@ -95,9 +95,10 @@ jobs:
           destination: reports
 
       - deploy:
-          command: git config --global user.email k.taroooo@gmail.com
-          command: git config --global user.name kchan0514
-          command: git add ./repo
-          command: git commit  -m "build [ci skip]"
-          command: git pull https://github.com/kchan0514/circleci_test_public.git master
-          command: git push https://github.com/kchan0514/circleci_test_public.git master
+          command: |
+            git config --global user.email k.taroooo@gmail.com
+            git config --global user.name kchan0514
+            git add ./repo
+            git commit  -m "build [ci skip]"
+            git pull https://github.com/kchan0514/circleci_test_public.git master
+            git push https://github.com/kchan0514/circleci_test_public.git master
