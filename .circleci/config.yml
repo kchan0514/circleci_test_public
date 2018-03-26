@@ -18,18 +18,22 @@ jobs:
       - checkout
 
       # Download and cache dependencies
-      - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "chatmessageview/build.gradle" }}
+      #- restore_cache:
+      #    key: jars-{{ checksum "build.gradle" }}-{{ checksum  "chatmessageview/build.gradle" }}
 
       - run:
           name: update android sdk
           command: |
               echo y | android update sdk --no-ui --all --filter tool,extra-android-m2repository,extra-google-google_play_services,extra-google-m2repository,android-26
               echo y | android update sdk --no-ui --all --filter build-tools-26.0.0
-      - run:
-          name: gradle dependencies
-          command: ./gradlew androidDependencies
+    #  - run:
+    #      name: gradle dependencies
+    #      command: ./gradlew androidDependencies
 
+      - run:
+          name: assembleDebug
+              ./gradlew assembleDebug
+              
       - save_cache:
           paths: ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "chatmessageview/build.gradle" }}
