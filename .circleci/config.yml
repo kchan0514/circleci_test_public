@@ -35,6 +35,10 @@ jobs:
           name: assembleDebug
           command: ./gradlew assembleDebug
 
+      - run:
+          name: uploadArchives
+          command: ./gradlew uploadArchives
+
       - save_cache:
           paths: ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
@@ -89,3 +93,11 @@ jobs:
       - store_artifacts:
           path: ./
           destination: reports
+
+      - deploy:
+          command: git config --global user.email k.taroooo@gmail.com
+          command: git config --global user.name kchan0514
+          command: git add ./repo
+          command: git commit  -m "build [ci skip]"
+          command: git pull https://github.com/kchan0514/circleci_test_public.git master
+          command: git push https://github.com/kchan0514/circleci_test_public.git master
