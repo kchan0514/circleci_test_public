@@ -32,8 +32,8 @@ jobs:
 
       - run:
           name: assembleDebug
-              ./gradlew assembleDebug
-              
+              command: ./gradlew assembleDebug
+
       - save_cache:
           paths: ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "chatmessageview/build.gradle" }}
