@@ -67,9 +67,9 @@ jobs:
           command: |
               circle-android wait-for-boot
               adb shell input keyevent 82
-      - run:
-          name: Run UI test
-          command: ./gradlew example:connectedAndroidTest
+      #- run:
+      #    name: Run UI test
+      #    command: ./gradlew example:connectedAndroidTest
 
       - run:
           name: Distribute Bintray
@@ -89,11 +89,9 @@ jobs:
               fi
       - store_test_results:
           path: ./
-
       - store_artifacts:
           path: ./
           destination: reports
-
       - deploy:
           command: |
             git config --global user.email k.taroooo@gmail.com
